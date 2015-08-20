@@ -29,6 +29,8 @@ You simply have to include the minified script and initialize it with your write
       //OPTIONAL init methods
       //add some meta attributes in final JSON
       logmatic.setMetas({"userId":"1234"}) entries
+      //add a tag array in final JSON
+      logmatic.setTags(['dev','client']) entries
       //fwd any error using "exception" as JSON attr
       logmatic.setSendConsoleErrors("exception");
       //fwd any console log using "level" as JSON attr
@@ -99,6 +101,7 @@ You can also use all the following parameters using the right method:
 | Method        | Description           |  Example  |
 | ------------- | ------------- |  ----- |
 | setMetas(<object>) | add some meta attributes in final JSON | `.setMetas({"userId":"1234"})` |
+| setTags(<array>) | add tags in final JSON | `.setTags(['dev','client'])` |
 | setSendConsoleErrors(<exception_attr>) | fwd any error using exception_attr as JSON attr | `.setSendConsoleErrors("exception");`|
 | setSendConsoleLogs(<level_attr>) | fwd any console log using level_attr" as JSON attr | `.setSendConsoleLogs("level")`|
 | setIPTracking(<ip_attr>) | resolve client IP and copy it @ ip_attr | `.setIPTracking("client.IP")`|
