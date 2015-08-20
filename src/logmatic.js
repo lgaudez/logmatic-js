@@ -10,6 +10,7 @@
 }(this, function () {
   var _url;
   var _metas;
+  var _tags;
   var _ipTrackingAttr;
   var _uaTrackingAttr;
   var _urlTrackingAttr;
@@ -42,6 +43,10 @@
           data[key] = _metas[key];
         }
       }
+    }
+
+    if (_tags && _tags.length > 0) {
+      data['tags'] = _tags;
     }
     //URL tracking
     if(_urlTrackingAttr){
@@ -76,51 +81,55 @@
     _metas = metas;
   }
 
+  var setTags = function(tagsTab) {
+    _tags = tagsTab;
+  }
+
   function setSendConsoleLogs(consoleLevelAttribute) {
     var oldLog = console.log;
     console.log = function (message) {
-        var props = {};
-        if(consoleLevelAttribute){
-          props[consoleLevelAttribute]="info";
-        }
-        log(message,props);
-        oldLog.apply(console, arguments);
+      var props = {};
+      if(consoleLevelAttribute){
+        props[consoleLevelAttribute]="info";
+      }
+      log(message,props);
+      oldLog.apply(console, arguments);
     };
     var oldInfo = console.info;
     console.info = function (message) {
-        var props = {};
-        if(consoleLevelAttribute){
-          props[consoleLevelAttribute]="info";
-        }
-        log(message,props);
-        oldInfo.apply(console, arguments);
+      var props = {};
+      if(consoleLevelAttribute){
+        props[consoleLevelAttribute]="info";
+      }
+      log(message,props);
+      oldInfo.apply(console, arguments);
     };
     var oldTrace = console.trace;
     console.trace = function (message) {
-        var props = {};
-        if(consoleLevelAttribute){
-          props[consoleLevelAttribute]="trace";
-        }
-        log(message,props);
-        oldTrace.apply(console, arguments);
+      var props = {};
+      if(consoleLevelAttribute){
+        props[consoleLevelAttribute]="trace";
+      }
+      log(message,props);
+      oldTrace.apply(console, arguments);
     };
     var oldWarn = console.warn;
     console.warn = function (message) {
-        var props = {};
-        if(consoleLevelAttribute){
-          props[consoleLevelAttribute]="warn";
-        }
-        log(message,props);
-        oldWarn.apply(console, arguments);
+      var props = {};
+      if(consoleLevelAttribute){
+        props[consoleLevelAttribute]="warn";
+      }
+      log(message,props);
+      oldWarn.apply(console, arguments);
     };
     var oldError = console.error;
     console.error = function (message) {
-        var props = {};
-        if(consoleLevelAttribute){
-          props[consoleLevelAttribute]="error";
-        }
-        log(message,props);
-        oldError.apply(console, arguments);
+      var props = {};
+      if(consoleLevelAttribute){
+        props[consoleLevelAttribute]="error";
+      }
+      log(message,props);
+      oldError.apply(console, arguments);
     };
   }
 
@@ -160,6 +169,7 @@
     init: init,
     log: log,
     setMetas: setMetas,
+    setTags: setTags,
     setSendConsoleErrors: setSendConsoleErrors,
     setSendConsoleLogs: setSendConsoleLogs,
     setIPTracking: setIPTracking,
